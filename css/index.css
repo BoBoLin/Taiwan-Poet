@@ -1,42 +1,49 @@
 body {
-	font-family: 'Century Gothic Regular', 'Century Gothic';
-
-
-
+	font-family: 'Microsoft JhengHei Regular', 'Century Gothic Regular', 'Century Gothic';
+	background-color: white;
+	
 }
 
 .backgroundDiv {
-	width: 1500px;
-	height: 1125px;
-    margin-left: 15px;
-    margin-right: 15px;
-    background-image: url('../img/main_bg.jpg');
+	width: 1600px;
+	height: 1200px;
+	margin: 0px auto;
+    background-image: url('../img/main_bg_1920.png');
     background-repeat: no-repeat;
-    background-position: absolute; 
     background-size: cover;
+    text-align: center;
 }
 
-.second_bg{
+.poet_bg{
+	position: absolute;
 	width: 1200px;
-	height: 1000px;
-    margin-left: 15px;
-    margin-right: 15px;
-    background-image: url('../img/second_bg.jpg');
+	margin: 0px auto;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: -999;
+	/*background-color: blue;
     background-repeat: no-repeat;
-    background-position: absolute; 
+    background-attachment: fixed;
+    background-position: center; 
     background-size: cover;
-
+*/
+}
+.poet_bg .img_bg{
+	min-height: 100%;
+	width: 100%;
 }
 
 .navbar{
 	min-width: 50px; 
-	opacity: 0.9; 
+	opacity: 1.0; 
 	font-size: 18px;
 }
 
 #circle {
-      width: 100px;
-      height: 100px;
+      width: 110px;
+      height: 110px;
       border-radius: 50px;
 }
 
@@ -51,22 +58,14 @@ body {
 
 }
 
-.show{
-	width: 600px;
-	height: 500px;
-	position: relative;
-	left:40px;
-	top: 120px;
-	
-}
 
-#title{
-	text-align:center;
-	font-size: 30px;
-	font-weight: bold;
+
+#bihua_title, #pinyin_title{
+	font-size: 15px;
+	/*font-weight: bold;*/
 	line-height: 50px;
 	height: 50px;
-	background-color:#46A3FF;
+	color: white;
 }
 
 
@@ -82,5 +81,61 @@ body {
     margin-right: 0%;
 }
 
+.show{
+	width: 600px;
+	height: 500px;
+	position: absolute;
+	left:10%;
+	top: 18%;
+	
+}
+
+
+
+#show_bihua, #show_pinyin{
+	position: absolute;
+	width: 800px;	
+	height:600px; 
+	left:150px; 
+	top: 120px; 
+	/*background-color:#DFFFDF;
+	text-align: center;*/
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+    background-color: #4CAF50;
+    border: none;
+    /*padding: 16px 32px;*/
+	width: 110px;
+	height: 40px;
+    text-decoration: none;
+    margin: 3px 2px;
+    cursor: pointer;
+}
+
+
+#bihua_select, #pinyin_select{
+	font-size:18px;
+	position: absolute;
+	background-color:#AFEEEE;
+	width: 145px; 
+	height: 40px; 
+	text-align-last:center;
+	top:80px
+}
+
+#bihua_title, #pinyin_title{
+	font-size:18px;
+	position: absolute;
+	width: 800px; 
+	height: 40px; 
+	background-color:#1FA1DC; 
+	left:150px; 
+	top:80px;
+}
+
+#retrieval{
+
+}
 
 

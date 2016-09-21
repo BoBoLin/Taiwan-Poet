@@ -15,34 +15,55 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/jquery.dropdown.js"></script>
 	<script src="js/modernizr.custom.63321.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
 
+	<script>
+	window.onload = function(){
+		getAllBihuas();
+		getAllPinyins();
+	}
 
-
-
+	</script>
 
 </head>
 <body>
-<div class="second_bg">
-	<div style="position: absolute; left: 250px; top: 100px;">
+<div class="poet_bg">
+	<img class="img_bg" src="img/詩人bg.png">
+	<div style="position: absolute; left: 16%; top: 8%;">
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 		    	<ul class="nav navbar-nav">
 		    		<li><a href="index.html">回首頁</a></li>
-			    	<li><a href="#">台灣詩詩作</a></li>
-			    	<li><a href="#">台灣詩詩社</a></li>
+			    	<li style="background-color:#754C00;"><a href="#" style="color: white;">詩人</a></li>
+			    	<li><a href="#">詩作</a></li>
+			    	<li><a href="#">詩社</a></li>
 			    </ul>
 			</div>
-
 		</nav>
+	</div>
 
-		<div class="show">
-			<h3><b>檢索區</b></h3>
-			<hr style="border-top: 2px solid #272727;">
-
-			<section class="main clearfix">
-
-				<div class="fleft">
-					<select id="cd-dropdown" class="cd-select">
+	<div class="show">
+		<div class= "retrieval">
+			<img src="img/檢索區.png" style="width: 400px; height: 70px;">
+			<nav class="navbar navbar-default" style="position:absolute; left:158px ;top:20px; font-size:18px; background-color:transparent">
+				<div class="container-fluid">
+					<ul class="nav navbar-nav">
+						<li class="bihua" style="background-color:#a86811; margin-right:5px;">
+							<a href="#" style="color: white; padding: 13px 20px;">筆畫檢索</a>
+						</li>
+						<li class="pinyin" style="background-color:#AFA941; ">
+							<a href="#" style="color:white; padding: 13px 20px;">拼音檢索</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<!-- 筆畫檢索  -->
+		<div id="bihua" style="display:show">
+			<select id="bihua_select">
+				<option value="-1" selected>　筆畫</option>
+			</select>
+					<!--<select id="cd-dropdown" class="cd-select">
 						<option value="-1" selected>請選擇筆劃數</option>
 						<option value="2">2劃</option>
 						<option value="3">3劃</option>
@@ -51,19 +72,34 @@
 						<option value="6">6劃</option>
 						<option value="7">7劃</option>
 						<option value="36">36劃</option>
-					</select>
-				</div>
-			</section>
-
-			<div class="show_data" id="show_data">
-				<div id="title"></div>
-				
+					</select>-->
+			<div id= "bihua_title">
+				<p id= "bihua_number" style="position:absolute; left:10px; width:100px ; height: 40px;" ></p>
+				<p id= "bihua_last_name" style= "position: absolute; left: 150px; height: 40px"></p>
 			</div>
+			<div id= "show_bihua" >
+			
+			</div>
+			
+		</div>
+		<!-- 拼音檢索  -->
+		<div id= "pinyin" style="display:none">
+			<select id="pinyin_select">
+				<option value="-1" selected>　拼音</option>
 
+			</select>
+			<div id= "pinyin_title">
+				<p id= "pinyin_number" style="position:absolute; left:10px; width:100px ; height: 40px;" ></p>
+				<p id= "pinyin_last_name" style= "position: absolute; left: 150px; height: 40px"></p>
+			</div>
+			<div id= "show_pinyin" >
+			
+			</div>
 
 		</div>
 
 	</div>
+
 </div>
 
 </body>

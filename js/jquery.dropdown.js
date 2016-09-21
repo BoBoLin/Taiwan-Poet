@@ -10,15 +10,12 @@
  */
 
 ;( function( $, window, undefined ) {
-	
+	var tmp ;
 	$( function() {
 			
 			$( '#cd-dropdown' ).dropdown();
 
 	});
-
-
-
 
 	'use strict';
 
@@ -163,7 +160,7 @@
 					if(selected_val !=null)
 					{
 						$("#show_data").hide();
-						$("#title").text(selected_val+"劃");
+						$("#bihua_title > p").text(selected_val+"劃");
 						$("#show_data").show("slow");
 
 					}

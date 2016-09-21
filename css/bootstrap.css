@@ -1082,7 +1082,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Microsoft JhengHei Regular", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
@@ -1605,7 +1605,7 @@ pre code {
 }
 .container-fluid {
   padding-right: 15px;
-  padding-left: 15px;
+  /*padding-left: 15px;*/
   margin-right: auto;
   margin-left: auto;
 }
@@ -3980,13 +3980,34 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   list-style: none;
 }
 .nav > li {
+  -moz-transform-origin:bottom;
+  -moz-transform:skewX(-15deg);
+  -webkit-transform-origin:bottom;
+  -webkit-transform:skewX(-15deg);
+  -o-transform-origin:bottom;
+  -o-transform:skewX(-15deg);
+  -ms-transform-origin:bottom;
+  -ms-transform:skewX(-15deg);
+  transform-origin:bottom;
+  transform:skewX(-15deg);
   position: relative;
   display: block;
 }
 .nav > li > a {
   position: relative;
   display: block;
-  padding: 10px 15px;
+  padding: 10px 40px;
+  -moz-transform-origin:bottom;
+  -moz-transform:skewX(15deg);
+  -webkit-transform-origin:bottom;
+  -webkit-transform:skewX(15deg);
+  -o-transform-origin:bottom;
+  -o-transform:skewX(15deg);
+  -ms-transform-origin:bottom;
+  -ms-transform:skewX(15deg);
+  transform-origin:bottom;
+  transform:skewX(15deg);
+
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
@@ -4510,7 +4531,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   color: #777;
 }
 .navbar-default .navbar-nav > li > a {
-  color: #777;
+  color: #754C00;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
@@ -4976,30 +4997,8 @@ a.badge:focus {
 .jumbotron > hr {
   border-top-color: #d5d5d5;
 }
-.container .jumbotron,
-.container-fluid .jumbotron {
-  padding-right: 15px;
-  padding-left: 15px;
-  border-radius: 6px;
-}
-.jumbotron .container {
-  max-width: 100%;
-}
-@media screen and (min-width: 768px) {
-  .jumbotron {
-    padding-top: 48px;
-    padding-bottom: 48px;
-  }
-  .container .jumbotron,
-  .container-fluid .jumbotron {
-    padding-right: 60px;
-    padding-left: 60px;
-  }
-  .jumbotron h1,
-  .jumbotron .h1 {
-    font-size: 63px;
-  }
-}
+
+
 .thumbnail {
   display: block;
   padding: 4px;
