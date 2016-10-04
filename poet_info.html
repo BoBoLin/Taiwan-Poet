@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>臺灣詩 詩人資訊</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css" >
+
+	<script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+
+	<script>
+	window.onload = function()
+	{
+		//----得到後端之詩人詳細資料
+		var url = location.href;
+		var tmp = url.split("?");  //tmp[1]為要搜尋之詩人id
+		searchPoet(tmp[1]);
+		
+		/*var string			= "你說這樣好不好？"; //字串
+var target 			= "你|好"; //準備替代的文字, 可用 | 代表or
+var myRegExp 		= new RegExp(target, 'g'); //轉換成正規表示
+var replaceText 	= "O"; //準備替換成的文字
+var new_string 		= string.replace(myRegExp, replaceText); //開始替換
+alert(new_string);*/
+		
+		
+	}
+
+	</script>
+	
+</head>
+<body>
+<div class="poet_bg">
+	<img class="img_bg" src="img/詩人bg.png">
+	<div style="position: absolute; left: 160px; top: 80px">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+		    	<ul class="nav navbar-nav">
+		    		<li><a href="index.html">回首頁</a></li>
+			    	<li style="background-color:#754C00;"><a href="poet.html" style="color: white;">詩人</a></li>
+			    	<li><a href="#">詩作</a></li>
+			    	<li><a href="#">詩社</a></li>
+			    </ul>
+			</div>
+		</nav>
+	</div>
+	<div style="position: absolute; left: 120px; top: 200px ">
+		<p id="poet_name" style="font-size: 40px; color: #005A4E"></p>
+	</div>
+	<table style="position:absolute; top: 260px; margin-left:120px; margin-right:120px">
+		<tr>
+			<th id="summary" style="border-left-style:none"><a href='#' style= "text-decoration: none;"><p style="color: white; background-color:#928e06">提　　要</p></a></th>
+			<th id="information"><a href='#' style= "text-decoration: none;"><p>基本資料</p></a></th>
+			<th id="life"><a href='#' style= "text-decoration: none;"><p>生平及人際介紹</p></a></th>
+			<th id="experience"><a href='#' style= "text-decoration: none;"><p>相關學經歷簡介</p></a></th>
+			<th id="studies"><a href='#' style= "text-decoration: none;"><p>相關文學研究註解</p></a></th>
+			<th id="relationship" style="border-right-style:none"><a href='#' style= "text-decoration: none;"><p>詩人關係圖</p></a></th>
+		</tr>
+	</table>
+	
+	<div id="content">
+		<div class= "show_poet_data" id="summary_content" style= "display: show; line-height: 35px;"> <!-- 提要 -->
+		</div>
+		
+		<!-- 基本資料 -->
+		<div id = "information_content" style = "display: none">
+			<div id="subject">
+				<p>　　　字</p>
+				<p>其他名稱</p>
+				<p>稱　　譽</p>
+				<p style= "letter-spacing: 14.9px;">居室名</p>
+				<p>朝　　代</p>
+				<p>年　　號</p>
+				<p>寓台時間</p>
+				<p>原　　籍</p>
+				<p>生　　年</p>
+				<p>生　　地</p>
+			</div>
+			<div class= "show_poet_data" id= "information_content_first" style= "float: left; width: 380px; ">
+				<!--<sup><a href="#" data-toggle="tooltip" data-placement="top" title="Hooray!">Top</a></sup>
+				-->
+			</div>
+			<div id="subject">
+				<p>　　　號</p>
+				<p>　</p>
+				<p>性　　別</p>
+				<p>　</p>
+				<p>　</p>
+				<p>　</p>
+				<p>　</p>
+				<p>族　　群</p>
+				<p>卒　　年</p>
+				<p>卒　　地</p>
+			</div>
+			<div class= "show_poet_data" id= "information_content_second" style= "float: left; width: 290px; ">
+			</div>
+			
+			<div style="float:left; width: 940px; height:auto">
+				<div id= "subject"><p>興趣專長</p></div>
+				<div class= "show_poet_data" id= "information_expertise_name" style= "float: left;"></div>  <!--興趣專長資料-->
+				
+			</div>
+			<div style="float:left; width: 940px; height:auto">
+				<div id= "subject" style= "float: left">宗教信仰</div>
+				<div class= "show_poet_data" id= "information_religion_name" style= "float: left;"></div>  <!--宗教信仰資料-->
+			</div>
+		</div>
+		
+		<!-- 生平及人際介紹 -->
+		<div id = "life_content" style = "display: none">
+			<div style="float:left; width: 940px; height:auto">
+				<div id= "subject" style= "height: 85px">
+					<p>生　　平</p>
+					<p>相關地點</p>
+				</div>
+				<div class= "show_poet_data" id= "information_biography_location" style= "float: left; height: 123px; overflow: hidden; background-color: rgba(250, 253, 254, 0.7);">
+					<img id= "open_img_biography_location" src= "img/open.png" style= "position: relative; left: 780px; top: 80px">
+					<img id = "close_img_biography_location" src= "img/close.png" style = "position: relative; left: 780px; top: 80px; display:none;">
+				</div>  <!--生平相關地點資料-->
+			</div>
+			<div style="float:left; width: 940px; height:auto">
+				<div id= "subject" style= "height: 50px">
+					<p>生　　　平</p>
+					<p>相關地點年</p>
+				</div>
+				<div class= "show_poet_data" id= "information_biography_time" style= "float: left; height: 80px; width: 800px; overflow: hidden; background-color: rgba(250, 253, 254, 0.7);">
+					<img id= "open_img_biography_time" src= "img/open.png" style= "position: relative; left: 780px; top: 30px">
+					<img id = "close_img_biography_time" src= "img/close.png" style = "position: relative; left: 780px; top: 30px; display:none;">
+				</div>  <!--生平相關地點年資料-->
+			</div>
+			
+			<div style="float:left; width: 940px; height:auto">
+				<div id= "subject"><p>親　　族</p></div>
+				<div class= "show_poet_data" id= "information_family" style= "float: left; background-color: rgba(250, 253, 254, 0.7); width: 800px">
+				</div>  <!--親族資料-->
+				
+			</div>
+			<div style="float:left; width: 940px; height:auto">
+				<div id= "subject" style= "float: left; height: auto"><p>　　　師</p></div>
+				<div class= "show_poet_data" id= "information_teacher" style= "float: left; height: 100px; background-color: rgba(250, 253, 254, 0.7); "></div>  <!--師資料-->
+			</div>
+			<div style="float:left; width: 940px; height:auto">
+				<div id= "subject" style= "float: left; height: auto;"><p>　　　友</p></div>
+				<div class= "show_poet_data" id= "information_friend" style= "float: left; height: 100px; background-color: rgba(250, 253, 254, 0.7); "></div>  <!--師資料-->
+			</div>
+		</div>
+		
+		<!-- 相關學經歷簡介 -->
+		<div id = "experience_content" style = "display: none">
+			<div style="float:left; width: 940px; height:auto">
+				<div id= "subject" style= "height:auto; min-height: 50px;">
+					<p>學　　歷</p>
+				</div>
+				<div class= "show_poet_data" id= "information_education" style= "float: left; height:auto; min-height: 50px; width: 800px; background-color: rgba(250, 253, 254, 0.7);"></div> 
+			</div>
+			<div style="float:left; width: 940px; height:auto">
+				<div id= "subject" style= "height: 50px">
+					<p>經　　歷</p>
+				</div>
+				<div class= "show_poet_data" id= "information_experience" style= "float: left; height:auto; min-height: 50px; width: 800px; background-color: rgba(250, 253, 254, 0.7);"></div>  
+			</div>
+			<div style="float:left; width: 940px; height:auto">
+				<div id= "subject" style= "height: 50px">
+					<p>文學社團</p>
+				</div>
+				<div class= "show_poet_data" id= "information_society" style= "float: left; height:auto; min-height: 50px; width: 800px; background-color: rgba(250, 253, 254, 0.7);"></div>  
+			</div>
+			<div style="float:left; width: 940px; height:auto">
+				<div id= "subject" style= "height: 50px">
+					<p>重要事蹟</p>
+				</div>
+				<div class= "show_poet_data" id= "information_deeds" style= "float: left; height:auto; min-height: 50px; width: 800px; background-color: rgba(250, 253, 254, 0.7);"></div>  
+			</div>
+			<div style="float:left; width: 940px; height:auto">
+				<div id= "subject" style= "height: 50px">
+					<p>重要著作</p>
+				</div>
+				<div class= "show_poet_data" id= "information_work_0" style= "float: left; height:auto; min-height: 50px; width: 800px; background-color: rgba(250, 253, 254, 0.7);"></div> 
+			</div>
+			<div style="float:left; width: 940px; height:auto">
+				<div id= "subject" style= "height: 50px">
+					<p>作品出處</p>
+				</div>
+				<div class= "show_poet_data" id= "information_work_1" style= "float: left; height:auto; min-height: 50px; width: 800px; background-color: rgba(250, 253, 254, 0.7);"></div> 
+			</div>
+			
+		</div>
+		<!-- 相關文學研究註解 -->
+		<div id = "studies_content" style = "display: none">
+			<div style="float:left; width: 940px; height:auto">
+				<div id= "subject" style= "height:auto; min-height: 50px;">
+					<p style= "font-size: 16px; letter-spacing: 1px; text-align:center" >《全臺詩》冊次</p>
+				</div>
+				<div class= "show_poet_data" id= "information_volume" style= "float: left; height:auto; min-height: 50px; width: 800px; background-color: rgba(250, 253, 254, 0.7);"></div>
+			</div>
+			<div style="float:left; width: 940px; height:auto">
+				<div id= "subject" style= "height:auto; min-height: 150px;">
+					<p style= "font-size: 16px; letter-spacing: 1px; text-align:center" >當代相關研究</p>
+				</div>
+				<div class= "show_poet_data" id= "information_work_2" style= "float: left; height:150px; overflow: hidden; width: 800px; background-color: rgba(250, 253, 254, 0.7); margin-bottom: 20px;">
+				 <img id= "open_img_work_2" src= "img/open.png" style= "position: relative; left: 780px; top: 125px">
+				 <img id = "close_img_work_2" src= "img/close.png" style = "position: relative; left: 780px; top: 125px; display:none;">
+				</div> 
+			</div>
+			<div style="float:left; width: 940px; height:auto">
+				<div id= "subject" style= "height:auto; min-height: 75px;">
+					<p>註　　解</p>
+				</div>
+				<div class= "show_poet_data" id= "information_comment" style= "float: left; height:75px; overflow: hidden; width: 800px; background-color: rgba(250, 253, 254, 0.7);">
+				 <img id= "open_img_comment" src= "img/open.png" style= "position: relative; left: 780px; top: 50px; display: show;">
+				 <img id = "close_img_comment" src= "img/close.png" style = "position: relative; left: 780px; top: 50px; display:none;">
+				</div> 
+			</div>
+			<div style="float:left; width: 940px; height:auto">
+				<div id= "subject" style= "height:auto; min-height: 75px;">
+					<p>其他連結</p>
+				</div>
+				<div class= "show_poet_data" id= "information_other_link" style= "float: left; height:75px; overflow: hidden; width: 800px; background-color: rgba(250, 253, 254, 0.7);">
+				 <img id= "open_img_other_link" src= "img/open.png" style= "position: relative; left: 780px; top: 50px; ">
+				 <img id = "close_img_other_link" src= "img/close.png" style = "position: relative; left: 780px; top: 50px; display:none;">
+				</div> 
+			</div>
+		</div>
+		<!-- 詩人關係圖 -->
+		<div id = "relationship_content" style = "display: none">
+			<p style= "font-size: 40px; font-weight: bold">施工中</p>
+		</div>
+		</div>
+
+	<div id= "editor_name" style= "padding-top: 2px; position: absolute; top:820px; left:150px;width:100px; height: 25px; background-color: #684d08; color: white; font-size: 15px; text-align: center;">
+		<p>提要撰寫</p>
+	</div>
+	
+	<div id="editor_name_show" style= "position: absolute; top: 820px; left: 235px; background-color:white; width: 200px; height: 25px; color: #684d08">
+		
+	</div>
+	
+</div>
+
+</body>
+</html>

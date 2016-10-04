@@ -4,7 +4,7 @@ body {
 	
 }
 
-.backgroundDiv {
+/*.backgroundDiv {
 	width: 1600px;
 	height: 1200px;
 	margin: 0px auto;
@@ -12,9 +12,9 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
-}
+}*/
 
-.poet_bg{
+.backgroundDiv, .poet_bg{
 	position: absolute;
 	width: 1200px;
 	margin: 0px auto;
@@ -30,7 +30,7 @@ body {
     background-size: cover;
 */
 }
-.poet_bg .img_bg{
+.img_bg{
 	min-height: 100%;
 	width: 100%;
 }
@@ -58,18 +58,6 @@ body {
 
 }
 
-
-
-#bihua_title, #pinyin_title{
-	font-size: 15px;
-	/*font-weight: bold;*/
-	line-height: 50px;
-	height: 50px;
-	color: white;
-}
-
-
-
 .footer {
     /*width: 90%;*/
     margin-bottom: 25px;
@@ -96,7 +84,7 @@ body {
 	position: absolute;
 	width: 800px;	
 	height:600px; 
-	left:150px; 
+	left:204px; 
 	top: 120px; 
 	/*background-color:#DFFFDF;
 	text-align: center;*/
@@ -114,7 +102,7 @@ input[type=button], input[type=submit], input[type=reset] {
 }
 
 
-#bihua_select, #pinyin_select{
+/*#bihua_select, #pinyin_select{
 	font-size:18px;
 	position: absolute;
 	background-color:#AFEEEE;
@@ -122,20 +110,120 @@ input[type=button], input[type=submit], input[type=reset] {
 	height: 40px; 
 	text-align-last:center;
 	top:80px
-}
+}*/
 
-#bihua_title, #pinyin_title{
+#bihua_title{
 	font-size:18px;
 	position: absolute;
 	width: 800px; 
 	height: 40px; 
-	background-color:#1FA1DC; 
-	left:150px; 
+	background-color:#009eb7; 
+	left:204px; 
 	top:80px;
+	line-height: 50px;
+	color: white;
+}
+#pinyin_title{
+	font-size:18px;
+	position: absolute;
+	width: 800px; 
+	height: 40px; 
+	background-color:#00a191; 
+	left:204px; 
+	top:80px;
+	line-height: 50px;
+	color: white;
+	
 }
 
-#retrieval{
-
+th{
+	border:1px solid #928e06;
+	text-align: center;
+	border-collapse: collapse;
+	width: 155px;
+	height: 40px;
+	font-size: 17px;
 }
+
+th > a > p{
+	margin: 5px 7px;
+	height: 35px;
+	width: 145px;
+	line-height: 35px;
+	color: #734c00;
+}
+
+#content {
+	position: absolute;
+	left: 120px;
+	top: 320px;
+	width: 960px;
+	height: 500px ;
+	overflow: auto;
+	font-size: 16px;
+	color: #005A4E;
+	border-bottom: 1px solid #928e06;
+}
+
+#editor_name_show{
+	-moz-transform-origin: bottom;
+    -moz-transform: skewX(-15deg);
+    -webkit-transform-origin: bottom;
+    -webkit-transform: skewX(-15deg);
+    -o-transform-origin: bottom;
+    -o-transform: skewX(-15deg);
+    -ms-transform-origin: bottom;
+    -ms-transform: skewX(-15deg);
+    transform-origin: bottom;
+    transform: skewX(-15deg);
+    position: relative;
+    display: block;
+	
+}
+#editor_name_show > p {
+    position: relative;
+    display: block;
+    padding: 5px 50px ;
+    -moz-transform-origin: bottom;
+    -moz-transform: skewX(15deg);
+    -webkit-transform-origin: bottom;
+    -webkit-transform: skewX(15deg);
+    -o-transform-origin: bottom;
+    -o-transform: skewX(15deg);
+    -ms-transform-origin: bottom;
+    -ms-transform: skewX(15deg);
+    transform-origin: bottom;
+    transform: skewX(15deg);
+}
+
+#subject{
+	float:left; 
+	width: 130px;
+}
+
+#subject, #subject > p{
+	height: 25px;
+	letter-spacing: 5px;
+	font-weight: 600;  /*bold == 700 */
+	color: #620F13;
+	text-align: right;
+	margin-right: 5px;
+}
+
+.show_poet_data{
+	margin-bottom: 5px;
+}
+
+.show_poet_data > p{
+	background-color: rgba(250, 253, 254, 0.7);
+	margin-left: 5px;
+	font-weight: 600;
+	
+}
+
+
+
+
+
 
 

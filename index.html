@@ -5,25 +5,92 @@
 	<title>臺灣詩</title>
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
+	<script>
+		window.onload = function(){
+			$("#資料檢索").hover(function(){
+				$("#資料檢索").css({"width": "300px"});
+				$("#資料檢索_按鈕").show();
+			});
+			
+			$("#分類檢索").hover(function(){
+				$("#分類檢索").css({"width": "300px"});
+				$("#分類檢索_按鈕").show();
+			});
+			
+			//關掉所有按鈕
+			$(".img_bg").hover(function(){
+				$("#資料檢索_按鈕").hide();
+				$("#分類檢索_按鈕").hide();
+				$("#資料檢索").css({"width": "130px"});
+				$("#分類檢索").css({"width": "130px"});
+			});
+
+		};
+	</script>
 </head>
 <body>
 	<div class="backgroundDiv">
-		<a href="poet.html" title="資料檢索" style="text-decoration:none;top:375px;left:410px;position:absolute;font-size:30px">
-			<div id="circle"></div>
-		</a>
-		<!--<a href="http://www.nmtl.gov.tw/" target="_blank" title="國立台灣文學館" style="top:160px;left:1370px;position:absolute">
-			<div style="width: 100px;height: 30px ;background-color:blue"></div>
-		</a>
-		-->
+		<img class="img_bg" src="img/index/index_clean_bg.png">
+		<div id="資料檢索" style= "position: absolute; top: 250px; left: 100px;">
+			<a href="poet.html" title="資料檢索">
+				<img src= "img/index/資料檢索.png" style="width: 130px">
+			</a>
+			<div id= "資料檢索_按鈕" style ="display: none">
+				<a href= "poet.html" tittle="資料檢索"><img src= "img/index/詩人按鈕.png" style="position: absolute; top: 0px; left: 150px; width: 120px"></a>
+				<img src= "img/index/詩作按鈕.png" style="position: absolute; top: 45px; left: 150px; width: 120px">
+				<img src= "img/index/詩社按鈕.png" style="position: absolute; top: 100px; left: 150px; width: 120px">
+			</div>
+		</div>
+		<div id= "分類檢索" style= "position: absolute; top: 450px; left: 0px;">
+			<a href="#" title="分類檢索">
+				<img src= "img/index/分類檢索.png" style="width: 130px">
+			</a>
+			<div id= "分類檢索_按鈕" style ="display: none">
+				<img src= "img/index/事件按鈕.png" style="position: absolute; top: 0px; left: 150px; width: 120px">
+				<img src= "img/index/物件按鈕.png" style="position: absolute; top: 45px; left: 150px; width: 120px">
+				<img src= "img/index/娛樂按鈕.png" style="position: absolute; top: 91px; left: 150px; width: 120px">
+			</div>
+		</div>
+		<div id= "GIS地理資訊" style= "position: absolute; top: 620px; left: 200px;">
+			<a href="#" title="GIS地理資訊">
+				<img src= "img/index/GIS.png" style="width: 130px">
+			</a>
+			<!--<div id= "分類檢索_按鈕" style ="display: none">
+				<img src= "img/index/事件按鈕.png" style="position: absolute; top: 0px; left: 150px; width: 120px">
+				<img src= "img/index/物件按鈕.png" style="position: absolute; top: 45px; left: 150px; width: 120px">
+				<img src= "img/index/娛樂按鈕.png" style="position: absolute; top: 91px; left: 150px; width: 120px">
+			</div>-->
+		</div>
+		<div id= "分類統計" style= "position: absolute; top: 640px; left: 730px;">
+			<a href="#" title="分類統計">
+				<img src= "img/index/分類統計.png" style="width: 130px">
+			</a>
+			<!--<div id= "分類檢索_按鈕" style ="display: none">
+				<img src= "img/index/事件按鈕.png" style="position: absolute; top: 0px; left: 150px; width: 120px">
+				<img src= "img/index/物件按鈕.png" style="position: absolute; top: 45px; left: 150px; width: 120px">
+				<img src= "img/index/娛樂按鈕.png" style="position: absolute; top: 91px; left: 150px; width: 120px">
+			</div>-->
+		</div>
+		<div id= "數位文學" style= "position: absolute; top: 510px; left: 900px;">
+			<a href="#" title="數位文學">
+				<img src= "img/index/數位文學.png" style="width: 130px">
+			</a>
+			<!--<div id= "分類檢索_按鈕" style ="display: none">
+				<img src= "img/index/事件按鈕.png" style="position: absolute; top: 0px; left: 150px; width: 120px">
+				<img src= "img/index/物件按鈕.png" style="position: absolute; top: 45px; left: 150px; width: 120px">
+				<img src= "img/index/娛樂按鈕.png" style="position: absolute; top: 91px; left: 150px; width: 120px">
+			</div>-->
+		</div>
+
 
 	</div>
 
-	<footer class="footer">
+	<!--<footer class="footer">
 		<div class="container" style="padding-top: 25px;">
 
 			<p style="text-align:right;">&copy; All right reserved.</p>
 	    </div>
-	</footer>
+	</footer>-->
 
 </body>
 </html>

@@ -7,9 +7,9 @@ function Connect() {
 	$link = mysqli_connect($IP, $username, $password, $DB);
 	$link->query("SET NAMES UTF8");
 	if (!$link) {
-		echo "Error: Unable to connect to MySQL." . PHP_EOL;
-		echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
-		echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
+		//echo "Error: Unable to connect to MySQL." . PHP_EOL;
+		//echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
+		//echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
 		exit;
 	}
 	//  echo "Success: A proper connection to MySQL was made! The my_db database is great." . PHP_EOL;
@@ -189,12 +189,16 @@ class searchPoet {
 		$this->experience = array();
 		$this->society = array();
 		$this->expertise_name = array();
+		$this->biography_location = array();
+		$this->biography_time = array();
 		$this->family = array();
 		$this->teacher = array();
 		$this->friend = array();
+		$this->deeds = array();
 		$this->work_0 = array();
 		$this->work_1 = array();
 		$this->work_2 = array();
+		$this->comment = array();
 
 		$this->getPoetInfoData();
 		$this->getAliasTableData();
@@ -216,10 +220,10 @@ class searchPoet {
 		$Selectsql = "SELECT * FROM `$table_name` WHERE `poet_id` = '$this->poet_id'";
 		$row = $this->link->query($Selectsql);
 		if (!$row) {
-			echo "selectByEqual failed</br>";
-			echo "sql : $Selectsql</br>";
+			//echo "selectByEqual failed</br>";
+			//echo "sql : $Selectsql</br>";
 		} else if ($row->num_rows == 0) {
-			echo "no match</br>";
+			//echo "no match</br>";
 		} else {
 			$row = $row->fetch_row();
 
@@ -262,16 +266,30 @@ class searchPoet {
 			$EthnicRow = $this->link->query($Selectsql)->fetch_row();
 			$this->poet_ethnic = $EthnicRow[0];
 
-			$this->deeds = $row[11];
+			$this->deeds = explode("\n",$row[11]);
 
 			$religion_id = $row[12];
 			$Selectsql = "SELECT `religion_name` FROM `religion_table` WHERE `religion_id` = '$religion_id'";
 			$ReligionRow = $this->link->query($Selectsql)->fetch_row();
 			$this->religion_name = $ReligionRow[0];
 
-			$this->abstract = $row[13];
+			$commentString = $row[15];
+			$commentString = str_replace("`[*","[",$commentString);
+			$commentString = str_replace("*]`","]",$commentString); 
+			$this->comment = explode("\n",$commentString);
+			
+			$abstractString = $row[13];
+			$commentCount = substr_count($abstractString,"`[*");
+			$pattern = "/\`\[\*\d\*\]\`/";
+			for($i=0;$i<$commentCount;$i++){
+				if($i<=count($this->comment)){
+					$abstractString = preg_replace($pattern,"<sup id= \"comment_".($i+1)."\"><a href=\"#\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"".$this->comment[$i]."\">[".($i+1)."]</a></sup>", $abstractString, 1);
+				}
+			}
+			$this->abstract = $abstractString;
+			
 			$this->volume = $row[14];
-			$this->comment = $row[15];
+
 			$this->other_link = $row[16];
 		}
 	}
@@ -281,10 +299,10 @@ class searchPoet {
 		$Selectsql = "SELECT * FROM `$table_name` WHERE `poet_id` = '$this->poet_id'";
 		$rows = $this->link->query($Selectsql);
 		if (!$rows) {
-			echo "selectByEqual failed</br>";
-			echo "sql : $Selectsql</br>";
+			//echo "selectByEqual failed</br>";
+			//echo "sql : $Selectsql</br>";
 		} else if ($rows->num_rows == 0) {
-			echo "no match</br>";
+			//echo "no match</br>";
 		} else {
 			while ($row = $rows->fetch_row()) {
 				if ($row[2] == 0) {
@@ -308,10 +326,10 @@ class searchPoet {
 		$Selectsql = "SELECT * FROM `$table_name` WHERE `poet_id` = '$this->poet_id'";
 		$rows = $this->link->query($Selectsql);
 		if (!$rows) {
-			echo "selectByEqual failed</br>";
-			echo "sql : $Selectsql</br>";
+			//echo "selectByEqual failed</br>";
+			//echo "sql : $Selectsql</br>";
 		} else if ($rows->num_rows == 0) {
-			echo "no match</br>";
+			//echo "no match</br>";
 		} else {
 			while ($row = $rows->fetch_row()) {
 				array_push($this->house_name, $row[1]);
@@ -324,10 +342,10 @@ class searchPoet {
 		$Selectsql = "SELECT `era_id` FROM `$table_name` WHERE `poet_id` = '$this->poet_id'";
 		$row = $this->link->query($Selectsql);
 		if (!$row) {
-			echo "selectByEqual failed</br>";
-			echo "sql : $Selectsql</br>";
+			//echo "selectByEqual failed</br>";
+			//echo "sql : $Selectsql</br>";
 		} else if ($row->num_rows == 0) {
-			echo "no match</br>";
+			//echo "no match</br>";
 		} else {
 			$row = $row->fetch_row();
 			$era_id = $row[0];
@@ -342,10 +360,10 @@ class searchPoet {
 		$Selectsql = "SELECT * FROM `$table_name` WHERE `poet_id` = '$this->poet_id'";
 		$row = $this->link->query($Selectsql);
 		if (!$row) {
-			echo "selectByEqual failed</br>";
-			echo "sql : $Selectsql</br>";
+			//echo "selectByEqual failed</br>";
+			//echo "sql : $Selectsql</br>";
 		} else if ($row->num_rows == 0) {
-			echo "no match</br>";
+			//echo "no match</br>";
 		} else {
 			$row = $row->fetch_row();
 			$this->poet_atTaiwan = "$row[1]-$row[2]";
@@ -357,17 +375,17 @@ class searchPoet {
 		$Selectsql = "SELECT * FROM `$table_name` WHERE `poet_id` = '$this->poet_id'";
 		$rows = $this->link->query($Selectsql);
 		if (!$rows) {
-			echo "selectByEqual failed</br>";
-			echo "sql : $Selectsql</br>";
+			//echo "selectByEqual failed</br>";
+			//echo "sql : $Selectsql</br>";
 		} else if ($rows->num_rows == 0) {
-			echo "no match</br>";
+			//echo "no match</br>";
 		} else {
 			while ($row = $rows->fetch_row()) {
 				$biography_location_id = $row[2];
 				$Selectsql = "SELECT * FROM `geography_info` WHERE `geography_id` = '$biography_location_id'";
 				$LocationRow = $this->link->query($Selectsql)->fetch_row();
-				$this->biography_location = "$LocationRow[1](今$LocationRow[2])";
-				$this->biography_time = "$row[3]-$row[4]";
+				array_push($this->biography_location , "$LocationRow[1](今$LocationRow[2])");
+				array_push($this->biography_time , "$row[3]-$row[4]");
 			}
 		}
 	}
@@ -377,10 +395,10 @@ class searchPoet {
 		$Selectsql = "SELECT * FROM `$table_name` WHERE `poet_id` = '$this->poet_id'";
 		$row = $this->link->query($Selectsql);
 		if (!$row) {
-			echo "selectByEqual failed</br>";
-			echo "sql : $Selectsql</br>";
+			//echo "selectByEqual failed</br>";
+			//echo "sql : $Selectsql</br>";
 		} else if ($row->num_rows == 0) {
-			echo "no match</br>";
+			//echo "no match</br>";
 		} else {
 			$row = $row->fetch_row();
 			$educational_id = $row[3];
@@ -395,10 +413,10 @@ class searchPoet {
 		$Selectsql = "SELECT * FROM `$table_name` WHERE `poet_id` = '$this->poet_id'";
 		$rows = $this->link->query($Selectsql);
 		if (!$rows) {
-			echo "selectByEqual failed</br>";
-			echo "sql : $Selectsql</br>";
+			//echo "selectByEqual failed</br>";
+			//echo "sql : $Selectsql</br>";
 		} else if ($rows->num_rows == 0) {
-			echo "no match</br>";
+			//echo "no match</br>";
 		} else {
 			while ($row = $rows->fetch_row()) {
 				$experience_id = $row[3];
@@ -414,10 +432,10 @@ class searchPoet {
 		$Selectsql = "SELECT * FROM `$table_name` WHERE `poet_id` = '$this->poet_id'";
 		$rows = $this->link->query($Selectsql);
 		if (!$rows) {
-			echo "selectByEqual failed</br>";
-			echo "sql : $Selectsql</br>";
+			//echo "selectByEqual failed</br>";
+			//echo "sql : $Selectsql</br>";
 		} else if ($rows->num_rows == 0) {
-			echo "no match</br>";
+			//echo "no match</br>";
 		} else {
 			while ($row = $rows->fetch_row()) {
 				$expertise_id = $row[1];
@@ -433,10 +451,10 @@ class searchPoet {
 		$Selectsql = "SELECT * FROM `$table_name` WHERE `poet_id` = '$this->poet_id'";
 		$rows = $this->link->query($Selectsql);
 		if (!$rows) {
-			echo "selectByEqual failed</br>";
-			echo "sql : $Selectsql</br>";
+			//echo "selectByEqual failed</br>";
+			//echo "sql : $Selectsql</br>";
 		} else if ($rows->num_rows == 0) {
-			echo "no match</br>";
+			//echo "no match</br>";
 		} else {
 			while ($row = $rows->fetch_row()) {
 				$sname_id = $row[1];
@@ -452,10 +470,10 @@ class searchPoet {
 		$Selectsql = "SELECT `editor_name` FROM `$table_name` WHERE `correspond_id` = '$this->poet_id'";
 		$row = $this->link->query($Selectsql);
 		if (!$row) {
-			echo "selectByEqual failed</br>";
-			echo "sql : $Selectsql</br>";
+			//echo "selectByEqual failed</br>";
+			//echo "sql : $Selectsql</br>";
 		} else if ($row->num_rows == 0) {
-			echo "no match</br>";
+			//echo "no match</br>";
 		} else {
 			$row = $row->fetch_row();
 			$this->editor_name = $row[0];
@@ -467,10 +485,10 @@ class searchPoet {
 		$Selectsql = "SELECT * FROM `$table_name` WHERE `family_poet` = '$this->poet_id'";
 		$rows = $this->link->query($Selectsql);
 		if (!$rows) {
-			echo "selectByEqual failed</br>";
-			echo "sql : $Selectsql</br>";
+			//echo "selectByEqual failed</br>";
+			//echo "sql : $Selectsql</br>";
 		} else if ($rows->num_rows == 0) {
-			echo "no match</br>";
+			//echo "no match</br>";
 		} else {
 			while ($row = $rows->fetch_row()) {
 				$family_type = $row[3];
@@ -495,10 +513,10 @@ class searchPoet {
 		$Selectsql = "SELECT * FROM `$table_name` WHERE `poet_id` = '$this->poet_id'";
 		$rows = $this->link->query($Selectsql);
 		if (!$rows) {
-			echo "selectByEqual failed</br>";
-			echo "sql : $Selectsql</br>";
+			//echo "selectByEqual failed</br>";
+			//echo "sql : $Selectsql</br>";
 		} else if ($rows->num_rows == 0) {
-			echo "no match</br>";
+			//echo "no match</br>";
 		} else {
 			while ($row = $rows->fetch_row()) {
 				$work_type = $row[1];
@@ -517,8 +535,15 @@ class searchPoet {
 			}
 		}
 	}
-
+	
+	private function addBr(){
+		$this->abstract = str_replace("\n\n","<br>　　",$this->abstract);
+		$this->abstract = str_replace("\n","<br>　　",$this->abstract);
+		$this->abstract = "　　".$this->abstract; //縮排
+	}
+	
 	public function getObj() {
+		$this->addBr();
 		$page1 = array("name" => $this->name, "abstract" => $this->abstract, "editor_name" => $this->editor_name);
 		$page2 = array("alias_0" => $this->alias_0, "alias_1" => $this->alias_1, "alias_2" => $this->alias_2,
 			"alias_3" => $this->alias_3, "poet_gender" => $this->poet_gender, "house_name" => $this->house_name,
@@ -540,7 +565,7 @@ class searchPoet {
 		//page 1
 		echo "[page1]" . $this->name . "</br>";
 		echo "[page1]" . $this->abstract . "</br>";
-		echo "[page1]" . $this->editor_name . "</br>";
+		echo "[page1]editor_name " . $this->editor_name . "</br>";
 		//page 2
 		echo "[page2]";
 		print_r($this->alias_0);
@@ -572,8 +597,12 @@ class searchPoet {
 		echo "</br>";
 		echo "[page2]" . $this->religion_name . "</br>";
 		//page 3
-		echo "[page3]" . $this->biography_location . "</br>";
-		echo "[page3]" . $this->biography_time . "</br>";
+		echo "[page3] biography_location ";
+		print_r($this->biography_location);
+		echo "</br>";
+		echo "[page3]";
+		print_r($this->biography_time);
+		echo "</br>";		
 		echo "[page3]";
 		print_r($this->family);
 		echo "</br>";
@@ -591,7 +620,9 @@ class searchPoet {
 		echo "[page4]";
 		print_r($this->society);
 		echo "</br>";
-		echo "[page4]" . $this->deeds . "</br>";
+		echo "[page4] deeds";
+		print_r($this->deeds);
+		echo "</br>";		
 		echo "[page4]";
 		print_r($this->work_0);
 		echo "</br>";
@@ -603,7 +634,9 @@ class searchPoet {
 		echo "[page5]";
 		print_r($this->work_2);
 		echo "</br>";
-		echo "[page5]" . $this->comment . "</br>";
+		echo "[page5]";
+		print_r($this->comment);
+		echo "</br>";		
 		echo "[page5]" . $this->other_link . "</br>";
 	}
 }

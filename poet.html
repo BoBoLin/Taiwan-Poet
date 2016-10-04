@@ -5,16 +5,10 @@
 	<title>臺灣詩 詩人</title>
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/style4.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css" >
 
 	<script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
-
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
 	<script src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/jquery.dropdown.js"></script>
-	<script src="js/modernizr.custom.63321.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
 
 	<script>
@@ -24,7 +18,7 @@
 	}
 
 	</script>
-
+	
 </head>
 <body>
 <div class="poet_bg">
@@ -44,15 +38,18 @@
 
 	<div class="show">
 		<div class= "retrieval">
-			<img src="img/檢索區.png" style="width: 400px; height: 70px;">
-			<nav class="navbar navbar-default" style="position:absolute; left:158px ;top:20px; font-size:18px; background-color:transparent">
+			<img src="img/檢索區.png" style="width: 13px; height: 70px;">
+			<nav class="navbar navbar-default" style="position:absolute; left:15px ;top:20px; font-size:18px; background-color:transparent">
 				<div class="container-fluid">
 					<ul class="nav navbar-nav">
-						<li class="bihua" style="background-color:#a86811; margin-right:5px;">
+						<li style="background-color:white;">
+							<a herf="#" style= "color:#694201; padding: 13px 50px;">檢索區</a>
+						</li> 
+						<li class="bihua" style="background-color:#009eb7; margin-right:5px;">
 							<a href="#" style="color: white; padding: 13px 20px;">筆畫檢索</a>
 						</li>
-						<li class="pinyin" style="background-color:#AFA941; ">
-							<a href="#" style="color:white; padding: 13px 20px;">拼音檢索</a>
+						<li class="pinyin" style="background-color:#dddcda; ">
+							<a href="#" style="color:#694201; padding: 13px 20px;">拼音檢索</a>
 						</li>
 					</ul>
 				</div>
@@ -60,22 +57,23 @@
 		</div>
 		<!-- 筆畫檢索  -->
 		<div id="bihua" style="display:show">
-			<select id="bihua_select">
-				<option value="-1" selected>　筆畫</option>
-			</select>
-					<!--<select id="cd-dropdown" class="cd-select">
-						<option value="-1" selected>請選擇筆劃數</option>
-						<option value="2">2劃</option>
-						<option value="3">3劃</option>
-						<option value="4">4劃</option>
-						<option value="5">5劃</option>
-						<option value="6">6劃</option>
-						<option value="7">7劃</option>
-						<option value="36">36劃</option>
-					</select>-->
+		
+			<div class="wrapper-demo">
+				<div id="cc" class="wrapper-dropdown-1" tabindex="1">
+					<span>　　　筆畫</span><!--預設顯示文字-->
+					<ul class="dropdown" id="bihua_select" tabindex="1"><!--選項-->
+					</ul>
+				</div>
+				&#8203;<!--dropdown 的箭頭-->
+			</div>
+	
 			<div id= "bihua_title">
-				<p id= "bihua_number" style="position:absolute; left:10px; width:100px ; height: 40px;" ></p>
-				<p id= "bihua_last_name" style= "position: absolute; left: 150px; height: 40px"></p>
+				<div style= "position:absolute; width:100px ; height: 40px;">
+					<p id= "bihua_number" style= "margin-left: 15px"></p>
+				</div>
+				<div style= "position: absolute; left: 100px; height: 40px;">
+					<p id= "bihua_last_name" style= "margin-left: 15px"></p>
+				</div>
 			</div>
 			<div id= "show_bihua" >
 			
@@ -84,13 +82,25 @@
 		</div>
 		<!-- 拼音檢索  -->
 		<div id= "pinyin" style="display:none">
-			<select id="pinyin_select">
-				<option value="-1" selected>　拼音</option>
-
-			</select>
+			
+			<div class="wrapper-demo">
+				<div id="dd" class="wrapper-dropdown-1" tabindex="1">
+					<span>　　　拼音</span><!--預設顯示文字-->
+					<ul class="dropdown" id="pinyin_select" tabindex="1"><!--選項-->
+					</ul>
+				</div>
+				&#8203;<!--dropdown 的箭頭-->
+			</div>
+			
+			
 			<div id= "pinyin_title">
-				<p id= "pinyin_number" style="position:absolute; left:10px; width:100px ; height: 40px;" ></p>
-				<p id= "pinyin_last_name" style= "position: absolute; left: 150px; height: 40px"></p>
+				<div style= "position:absolute; width:100px ; height: 40px;">
+					<p id= "pinyin_number" style= "margin-left: 15px"></p>
+				</div>
+				<div style= "position: absolute; left: 100px; height: 40px;">
+					<p id= "pinyin_last_name" style= "margin-left: 15px"></p>
+				</div>
+		
 			</div>
 			<div id= "show_pinyin" >
 			

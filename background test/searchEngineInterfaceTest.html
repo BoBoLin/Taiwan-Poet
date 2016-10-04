@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div id="Demo0"><h2>#####get all pinyins#####</h2></div>
+<button type="button" onclick="getAllPinyins()">get all pinyins</button>
+<div id="Demo1"><h2>#####get all bihuas#####</h2></div>
+<button type="button" onclick="getAllBihuas()">get all bihuas</button>
+<div id="Demo2"><h2>#####search surname by pinyin "b"#####</h2></div>
+<button type="button" onclick="searchSurnameByPinyin()">search surname by pinyin</button>
+<div id="Demo3"><h2>#####search surname by bihua "11"#####</h2></div>
+<button type="button" onclick="searchSurnameByBihua()">search surname by bihua</button>
+<div id="Demo4"><h2>#####search name by surname "張"#####</h2></div>
+<button type="button" onclick="searchNameBySurname()">search name by surname</button>
+
+<script>
+function getAllPinyins() {
+  var value = "";
+  var type = 0;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var obj = JSON.parse(this.responseText);
+      var output = "";
+      for(var i = 0;i<obj.length;i++){
+        output += "pinyin : "+obj[i].pinyin+" phonetic : "+obj[i].phonetic+"</br>";
+      }     
+      document.getElementById("Demo0").innerHTML = output;
+    }
+  };
+  xhttp.open("GET","searchPoet.php?value="+value+"&type="+type, true);
+  xhttp.send();  
+}
+
+function getAllBihuas() {
+  var value = "";
+  var type = 1;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      // ["2","3"]
+      var obj = JSON.parse(this.responseText);
+      var output = "";
+      for(var i = 0;i<obj.length;i++){
+        output += obj[i]+" ";
+      }     
+      document.getElementById("Demo1").innerHTML = output;
+    }
+  };
+  xhttp.open("GET","searchPoet.php?value="+value+"&type="+type, true);
+  xhttp.send();  
+}
+
+function searchSurnameByPinyin() {
+  var pinyin = "b";
+  var type = 2;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    	// ["白","柏"]     
+    	var obj = JSON.parse(this.responseText);
+    	var output = "";
+    	for(var i = 0;i<obj.length;i++){
+    		output += obj[i]+" ";
+    	}
+      
+      document.getElementById("Demo2").innerHTML = output;
+    }
+  };
+  xhttp.open("GET","searchPoet.php?value="+pinyin+"&type="+type, true);
+  xhttp.send();  
+}
+
+function searchSurnameByBihua() {
+  var bihua = "11";
+  var type = 3;  
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    	// ["白","柏"]
+    	var obj = JSON.parse(this.responseText);
+    	var output = "";
+    	for(var i = 0;i<obj.length;i++){
+    		output += obj[i]+" ";
+    	}    	
+      	document.getElementById("Demo3").innerHTML = output;
+    }
+  };
+  xhttp.open("GET","searchPoet.php?value="+bihua+"&type="+type, true);
+  xhttp.send();  
+}
+
+function searchNameBySurname() {
+  var surname = "沈";
+  var type = 4;  
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    	/*
+			 [
+			    {
+			      "people_name":"張一號",
+			      "poet_id":10
+			    },
+			    {
+			      "people_name":"張二號",
+			      "poet_id":20
+			    }
+			  ]
+    	*/
+    	var obj = JSON.parse(this.responseText);
+    	var output = "";
+    	for(var i = 0;i<obj.length;i++){
+    		output += "name : "+obj[i].people_name+"，poet_id : "+obj[i].poet_id+"</br>";
+    	}  	
+      	document.getElementById("Demo4").innerHTML = output;
+    }
+  };
+  xhttp.open("GET","searchPoet.php?value="+surname+"&type="+type, true);
+  xhttp.send();  
+}
+
+</script>
+
+</body>
+</html>

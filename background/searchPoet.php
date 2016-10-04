@@ -29,8 +29,13 @@ case "4":
 case "5":
 	$poet_id = $_GET["value"];
 	$searchPoet = new searchPoet($poet_id);
+	//$searchPoet->printPoetData();
 	echo json_encode($searchPoet->getObj());
 	break;
+case "id":
+	$get_poet_id = $_GET["value"];
+	
 default:
 	break;
 }
+
